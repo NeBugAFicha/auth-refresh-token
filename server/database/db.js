@@ -1,7 +1,7 @@
 const {Pool} = require('pg');
 require('dotenv').config();
 
-const { DB_HOST, DB_PASSWORD, DB_NAME, DB_USER } = process.env;
+const { DB_HOST, DB_PASSWORD, DB_NAME, DB_USER, DB_PORT } = process.env;
 
 module.exports = {
     pool:{}, 
@@ -11,7 +11,7 @@ module.exports = {
             user: DB_USER,
             database: DB_NAME,
             password: DB_PASSWORD,
-            port: 5432,
+            port: DB_PORT,
             max: 10000,
             min: 10,
             idleTimeoutMillis: 5000,

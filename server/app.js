@@ -1,19 +1,7 @@
-console.log(1);
-const { JsonWebTokenError } = require('jsonwebtoken');
-const xlsx = require('xlsx');
-const path = require('path')
-let workbook_salePriceUpdateFile = xlsx.readFile('C:\\Users\\Aleksanov.Egor\\VSCode-projects\\auth-refreshtoken\\server\\КАМы бренды 2.xlsx');
-let worksheet_salePriceUpdateFile = workbook_salePriceUpdateFile.Sheets[workbook_salePriceUpdateFile.SheetNames[0]];
-let salePriceUpdateArr = xlsx.utils.sheet_to_json(worksheet_salePriceUpdateFile, {blankRows: false});
-salePriceUpdateArr.forEach(el=>console.log(el));
-//заменяем входные названия столбцов на те что используются в бд
-console.log()
-
-/*const express = require('express');
+const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const db = require('./database/db');
-require('dotenv').config();
 const router = require('./router/router');
 const app = express();
 
@@ -35,4 +23,4 @@ const start = async ()=>{
 };
 
 
-start();*/
+start();

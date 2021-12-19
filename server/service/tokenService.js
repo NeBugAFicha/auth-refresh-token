@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const db = require('../database/db');
+const db = require('../database/db').pool;
 
 class TokenService{
     generateTokens(payload){
@@ -10,8 +10,8 @@ class TokenService{
         }
     }
 
-    async saveToken(email, token){
-        await db.query('insert into usr_token values(%1,%2) on conflict do update refresh_token = %2',[email,token]);
+    async saveToken(user_id, refreshToken){
+        await db.query('insert into usr_token values($1,$2) on conflict(user_id) do update set refresh_token = $2',[user_id,refreshToken]);
     }
 }
 
