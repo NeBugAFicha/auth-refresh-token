@@ -1,10 +1,13 @@
-const db = require('../database/db').pool;
-const uuid = require('uuid');
-const bcrypt = require('bcrypt');
-const mailService = require('./mailService');
-const tokenService = require('./tokenService');
-const ApiError = require('../exception/apiError');
-const UserDto = require('../dtos/UserDto');
+import DB from '../database/db';
+import uuid from 'uuid';
+import bcrypt from 'bcrypt';
+import mailService from './mailService';
+import tokenService from './tokenService';
+import ApiError from '../exception/apiError';
+import UserDto from '../dtos/UserDto';
+
+const db:any = DB.pool;
+
 class UserService{
     async registration(email, password){
         let user = (await db.query('select * from usr where email = $1',[email])).rows[0];
@@ -56,7 +59,7 @@ class UserService{
         }
         const userData = tokenService.validateRefreshToken(refreshToken);
         const tokenFromDb = await tokenService.findToken(refreshToken);
-        console.log(userData,tokenFromDb);
+        // console.log(userData,tokenFromDb);
         if(!userData || !tokenFromDb){
             throw ApiError.UnauthorizedError();
         }
@@ -74,4 +77,4 @@ class UserService{
     }
 }
 
-module.exports = new UserService();
+export default new UserService();

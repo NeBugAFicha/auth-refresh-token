@@ -1,9 +1,10 @@
-const {Pool} = require('pg');
-require('dotenv').config();
+import {Pool} from 'pg';
+import * as doteenv from 'dotenv';
+doteenv.config();
 
 const { DB_HOST, DB_PASSWORD, DB_NAME, DB_USER, DB_PORT } = process.env;
 
-module.exports = {
+export default {
     pool:{}, 
     connect: async function(){
         const pgpool = new Pool({

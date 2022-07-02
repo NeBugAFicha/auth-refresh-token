@@ -1,5 +1,7 @@
-const jwt = require('jsonwebtoken');
-const db = require('../database/db').pool;
+import jwt from 'jsonwebtoken';
+import DB from '../database/db';
+
+const db:any = DB.pool;
 
 class TokenService{
     generateTokens(payload){
@@ -42,4 +44,4 @@ class TokenService{
         return tokenData;
     }
 }
-module.exports = new TokenService();
+export default new TokenService();
